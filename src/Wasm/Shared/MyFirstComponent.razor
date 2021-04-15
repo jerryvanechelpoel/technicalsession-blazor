@@ -1,0 +1,12 @@
+﻿<label>
+    @LabelName:
+</label>
+<input type="text"/>
+
+@code {
+    [Parameter]
+    public string LabelName { get; set; }
+
+    [Parameter]
+    public EventCallback<string> MyFirstEvent { get; set; }
+}

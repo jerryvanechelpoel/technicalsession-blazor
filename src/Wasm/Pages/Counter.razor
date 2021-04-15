@@ -1,0 +1,34 @@
+﻿@page "/counter"
+@page "/counter/{StartCounter:int}"
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<p>
+    <MyFirstComponent LabelName="Hello label" MyFirstEvent="OnMyFirstEvent" />
+</p>
+
+<button class="btn btn-primary" @onclick="IncrementCountAsync">Click me</button>
+
+@code {
+    [Parameter]
+    public int StartCounter { get; set; }
+
+    private int currentCount;
+
+    private void OnMyFirstEvent(string args)
+        {
+
+        }
+
+    private async void IncrementCountAsync()
+    {
+        currentCount++;
+    }
+
+    protected override void OnInitialized()
+    {
+        currentCount = StartCounter;
+    }
+}

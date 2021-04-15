@@ -1,0 +1,40 @@
+﻿@page "/subscribe"
+@using IR.DeviceRequestApp.Server.Models
+
+<h3>Subscription</h3>
+
+<EditForm Model="SubscribeData"
+          OnValidSubmit="SubscribeAsync">
+    <DataAnnotationsValidator />
+    <p>
+        <label>
+            First name:
+        </label>
+        <InputText @bind-Value="SubscribeData.FirstName" />
+        <ValidationMessage For="() => SubscribeData.FirstName" />
+    </p>
+    <p>
+        <label>
+            Email:
+        </label>
+        <InputText @bind-Value="SubscribeData.Email" />
+        <ValidationMessage For="() => SubscribeData.Email" />
+    </p>
+    <input type="submit" />
+</EditForm>
+
+@code {
+    public Request SubscribeData { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        SubscribeData = new Request();
+    }
+
+    public async void SubscribeAsync()
+    {
+
+    }
+}

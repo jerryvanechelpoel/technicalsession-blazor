@@ -1,0 +1,61 @@
+﻿@page "/devicerequest"
+
+@inject IMatDialogService MatDialogService
+
+<h3>DeviceRequest</h3>
+
+<EditForm Model="Request"
+          OnValidSubmit="SubmitRequestAsync">
+    <DataAnnotationsValidator />
+    <p>
+        <label>
+            First name:
+        </label>
+        <MatInputTextComponent @bind-Value="Request.FirstName" />
+        <ValidationMessage For="@(() => Request.FirstName)" />
+    </p>
+    <p>
+        <label>
+            Last name:
+        </label>
+        <MatInputTextComponent @bind-Value="Request.LastName" />
+        <ValidationMessage For="@(() => Request.LastName)" />
+    </p>
+    <p>
+        <label>
+            Email:
+        </label>
+        <MatInputTextComponent @bind-Value="Request.Email" />
+        <ValidationMessage For="@(() => Request.Email)" />
+    </p>
+    <p>
+        <label>
+            Preferred delivery date:
+        </label>
+        <MatDatePicker @bind-Value="Request.PreferredDeliveryDate" Format="dd/MM/yyyy" />
+        <ValidationMessage For="@(() => Request.PreferredDeliveryDate)" />
+    </p>
+    <p>
+        <label>
+            Device:
+        </label>
+        <MatSelect @bind-Value="Request.DeviceId">
+            @foreach (var device in Devices)
+            {
+                <MatOption TValue="int" Value="@device.Key">@device.Value</MatOption>
+            }
+        </MatSelect>
+        <ValidationMessage For="@(() => Request.DeviceId)" />
+    </p>
+    <p>
+        <label>
+            I consent that my data is automatic processed:
+        </label>
+        <MatCheckbox @bind-Value="Request.GdprApproval" />
+        <ValidationMessage For="@(() => Request.GdprApproval)" />
+    </p>
+    <!--<ValidationSummary />-->
+    <p>
+        <MatButton Raised="true" type="submit">Send</MatButton>
+    </p>
+</EditForm>
